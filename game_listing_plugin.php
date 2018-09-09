@@ -8,7 +8,7 @@
 */
 
 //Includes all PHP Files in &PluginDirector% /includes/php
-  foreach( glob(dirname(__FILE__) . '/includes/php*.php') as $class_path )
+  foreach( glob(dirname(__FILE__) . '/includes/*.php') as $class_path )
   		{
   			require_once( $class_path );
   		}

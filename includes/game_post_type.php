@@ -1,64 +1,59 @@
 <?php
-///Register Video Games as a Post type
-
-function cptui_register_my_cpts_video_games() {
-
-	/**
-	 * Post Type: Games.
-	 */
+// Register Custom Post Type Game
+// Post Type Key: game
+function create_game_cpt() {
 
 	$labels = array(
-		"name" => __( "Games", "astra" ),
-		"singular_name" => __( "Game", "astra" ),
-		"menu_name" => __( "Video Games", "astra" ),
-		"all_items" => __( "All Games", "astra" ),
-		"add_new" => __( "Add New", "astra" ),
-		"add_new_item" => __( "Add New Game", "astra" ),
-		"edit_item" => __( "Edit Game", "astra" ),
-		"new_item" => __( "New Game", "astra" ),
-		"view_item" => __( "View Game", "astra" ),
-		"view_items" => __( "View Games", "astra" ),
-		"search_items" => __( "Search Games", "astra" ),
-		"not_found" => __( "No Games Found", "astra" ),
-		"not_found_in_trash" => __( "No Games Found in Trash", "astra" ),
-		"parent_item_colon" => __( "Parent Game", "astra" ),
-		"featured_image" => __( "Cover Art", "astra" ),
-		"set_featured_image" => __( "Set Cover Art", "astra" ),
-		"remove_featured_image" => __( "Remove Cover Art", "astra" ),
-		"use_featured_image" => __( "Use Cover Art", "astra" ),
-		"archives" => __( "Game List", "astra" ),
-		"insert_into_item" => __( "Insert into game", "astra" ),
-		"uploaded_to_this_item" => __( "Uploaded to this game", "astra" ),
-		"filter_items_list" => __( "Filter game list", "astra" ),
-		"items_list_navigation" => __( "Game list navigation", "astra" ),
-		"items_list" => __( "Game List", "astra" ),
-		"attributes" => __( "Game Attributes", "astra" ),
-		"parent_item_colon" => __( "Parent Game", "astra" ),
+		'name' => __( 'Games', 'Post Type General Name', 'textdomain' ),
+		'singular_name' => __( 'Game', 'Post Type Singular Name', 'textdomain' ),
+		'menu_name' => __( 'Game Listing', 'textdomain' ),
+		'name_admin_bar' => __( 'Game', 'textdomain' ),
+		'archives' => __( 'Game Archives', 'textdomain' ),
+		'attributes' => __( 'Game Attributes', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent Game:', 'textdomain' ),
+		'all_items' => __( 'All Games', 'textdomain' ),
+		'add_new_item' => __( 'Add New Game', 'textdomain' ),
+		'add_new' => __( 'Add Game', 'textdomain' ),
+		'new_item' => __( 'New Game', 'textdomain' ),
+		'edit_item' => __( 'Edit Game', 'textdomain' ),
+		'update_item' => __( 'Update Game', 'textdomain' ),
+		'view_item' => __( 'View Game', 'textdomain' ),
+		'view_items' => __( 'View Games', 'textdomain' ),
+		'search_items' => __( 'Search Game', 'textdomain' ),
+		'not_found' => __( 'Not found', 'textdomain' ),
+		'not_found_in_trash' => __( 'Not found in Trash', 'textdomain' ),
+		'featured_image' => __( 'Featured Image', 'textdomain' ),
+		'set_featured_image' => __( 'Set featured image', 'textdomain' ),
+		'remove_featured_image' => __( 'Remove featured image', 'textdomain' ),
+		'use_featured_image' => __( 'Use as featured image', 'textdomain' ),
+		'insert_into_item' => __( 'Insert into Game', 'textdomain' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this Game', 'textdomain' ),
+		'items_list' => __( 'Games list', 'textdomain' ),
+		'items_list_navigation' => __( 'Games list navigation', 'textdomain' ),
+		'filter_items_list' => __( 'Filter Games list', 'textdomain' ),
 	);
-
 	$args = array(
-		"label" => __( "Games", "astra" ),
-		"labels" => $labels,
-		"description" => "",
-		"public" => true,
-		"publicly_queryable" => true,
-		"show_ui" => true,
-		"show_in_rest" => false,
-		"rest_base" => "",
-		"has_archive" => false,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"exclude_from_search" => false,
-		"capability_type" => "post",
-		"map_meta_cap" => true,
-		"hierarchical" => false,
-		"rewrite" => array( "slug" => "video_games", "with_front" => true ),
-		"query_var" => true,
-		"menu_icon" => "https://gamedevknights.com/wp-content/uploads/2018/09/snes-8-407848-1.png",
-		"supports" => array( "title", "editor", "thumbnail" ),
+		'label' => __( 'Game', 'textdomain' ),
+		'description' => __( '', 'textdomain' ),
+		'labels' => $labels,
+		'menu_icon' => 'dashicons-desktop',
+		'supports' => array('title', 'editor', 'thumbnail', 'custom-fields', ),
+		'taxonomies' => array('Genre', ),
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'menu_position' => 5,
+		'show_in_admin_bar' => true,
+		'show_in_nav_menus' => true,
+		'can_export' => true,
+		'has_archive' => true,
+		'hierarchical' => false,
+		'exclude_from_search' => false,
+		'show_in_rest' => true,
+		'publicly_queryable' => true,
+		'capability_type' => 'post',
 	);
+	register_post_type( 'game', $args );
 
-	register_post_type( "video_games", $args );
 }
-
-add_action( 'init', 'cptui_register_my_cpts_video_games' );
+add_action( 'init', 'create_game_cpt', 0 );
